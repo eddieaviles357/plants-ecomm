@@ -8,7 +8,7 @@ const Navigation = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 xl:px-0 b">
         <div className="flex flex-row items-center justify-between py-4 xl:py-0 h-24 min-h-24 max-h-24">
           <div> {/* Logo or Brand Name */ }
-            <a><img src="/logo.png" alt="Logo" className="h-8 w-auto" /></a>
+            <a><img src="/plant-logo.jpg" alt="Logo" className="h-8 w-auto" /></a>
           </div>
 
           <div className="hidden xl:block"> {/* Navigation Links */ }
