@@ -16,6 +16,13 @@
   --butter: #fcebd0;
   --skyblue: #b1baca;
   --emerald: #1d3b28;
+  
+  --greentea: #f2f6eb;
+  --sunflower: #ffce55;
+  --vibrantrose: #fb6e52;
+  --sourapple: #dbf58e;
+  --jade: #92c3a4;
+  --forest: #568265;
 }
 
 /* a {
@@ -39,8 +46,8 @@ html {
 
 body {
   width: 100%;
-  min-height: 100vh;
-  background: var(--palelime);
+  min-height: 120vh;
+  background: var(--white);
 }
 
 #root {
