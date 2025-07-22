@@ -16,7 +16,7 @@
   --butter: #fcebd0;
   --skyblue: #b1baca;
   --emerald: #1d3b28;
-  
+
   --greentea: #f2f6eb;
   --sunflower: #ffce55;
   --vibrantrose: #fb6e52;
@@ -46,8 +46,8 @@ html {
 
 body {
   width: 100%;
-  min-height: 120vh;
-  background: var(--white);
+  min-height: 100vh;
+  background: var(--greentea);
 }
 
 #root {
