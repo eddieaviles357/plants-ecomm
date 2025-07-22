@@ -4,6 +4,7 @@ import Home from './components/Pages/Home.jsx';
 // import Products from './components/Pages/Products.jsx';
 import Products from './components/Products/Products.jsx';
 import Hero from './components/Hero.jsx';
+import BrowseCategory from './components/BrowseCategory.jsx';
 import Login from './components/Pages/Login.jsx';
 import Signup from './components/Pages/Signup.jsx';
 import About from './components/Pages/About.jsx';
@@ -23,6 +24,7 @@ function App() {
       </Routes>
       <main>
         <Hero />
+        <BrowseCategory />
       </main>
     </>
   )
