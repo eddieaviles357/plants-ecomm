@@ -26,7 +26,7 @@ const Navigation = () => {
   }, []); 
 
   return (
-    <header className={`fixed left-0 bg-[var(--greentea)] top-0 w-full z-50 transition-all  ease-in-out duration-300 ${isScrolled && 'shadow-lg'}`}>
+    <header className={`fixed left-0 bg-[var(--white)] top-0 w-full z-50 transition-all  ease-in-out duration-300 ${isScrolled && 'shadow-lg'}`}>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 xl:px-0 b">
         <div className="flex flex-row items-center justify-between py-4 xl:py-0 h-24 min-h-24 max-h-24">
           <div> {/* Logo or Brand Name */ }
