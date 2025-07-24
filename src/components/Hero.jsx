@@ -2,7 +2,7 @@
 
 const Hero = () => {
   return (
-    <section className="overflow-hidden pb-12 pt-40">
+    <section className="overflow-hidden pb-12 pt-35">
       <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0">
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
         
@@ -19,16 +19,16 @@ const Hero = () => {
                           <span>30% off</span>
                         </div>
                         <h2 className="mb-3 text-xl font-semibold text-dark sm:text-3xl">
-                          <a href="#">Item Desc skjdfks adj jsdkf jasjf kasjf s fkjskf </a>
+                          <a href="#" >Tomatoe seeds</a>
                         </h2>
                         <p className="text-base text-meta-3">
-                          Lorem ipsum jdskfjasdj jdksf fdsa fsf sadjfkjasdkf jadskfj kasdjf kasdjf kjsak jfsadk fdskajf ksdjfk j ksdajf sdjafk jsdkfj ksaj sjf jsf kjj 
+                          Bag of seeds 25 pack. Organic grown and non-GMO. Perfect for home gardening.
                         </p>
                         <a href="#" className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--black)] px-9 hover:bg-darkLight">Shop now</a>
                       </div>
 
                       <div className="bg-[var(--black)]">
-                        <img src="/hero-image.jpg" alt="Hero" className="w-full h-auto object-cover rounded-2xl" loading="eager" width="320" height="400"/>
+                        <img src="/plant-logo.jpg" alt="Hero" className="w-full h-auto object-cover rounded-2xl h-48 w-96" loading="eager"/>
                       </div>
                     </div>
                   </div>
