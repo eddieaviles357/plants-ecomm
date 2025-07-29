@@ -2,7 +2,7 @@
 
 const Hero = () => {
   return (
-    <section className="overflow-hidden pb-12 pt-35">
+    <section className="overflow-hidden pb-12 pt-35 left-0">
       <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0">
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
         
