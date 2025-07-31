@@ -1,9 +1,9 @@
 
-const ProductsPageCategories = ({catetgories}) => {
-
+const ProductsPageCategories = ({categories}) => {
+  // console.log('ProductsPageCategories component rendered');
   return (
     <div className="flex flex-col gap-3 px-6 py-5">
-      {catetgories.map((category, index) => ( 
+      {categories.map((category, index) => ( 
         <label key={index} htmlFor={category.toLowerCase()} className="flex items-center justify-start gap-2 cursor-pointer group hover:text-blue">
         <input className="sr-only peer" id="laptop-&amp;-pc" type="checkbox" />
           <span className="flex-1 text-base font-normal peer-checked:text-blue">{category}</span>
