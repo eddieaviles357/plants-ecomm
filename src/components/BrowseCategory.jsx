@@ -3,7 +3,7 @@ const BrowseCategory = () => {
   const categories = ["Nutrients & Concentrates", "Lights", "Containers", "Soil", "Seeds", "Fertilizers", "Tools & Accessories"];
   return (
     <section className="relative overflow-hidden pt-17.5 bg-[var(--white)] w-full left-0 border-gray-2 rounded-2xl">
-      <div className="w-full px-4 pb-16 mx-auto border-b max-w-7xl sm:px-8 xl:px-0 border-gray-3">
+      <div className="w-full px-4 pb-16 mx-auto max-w-7xl sm:px-8 xl:px-0">
         <div className="swiper categories-carousel common-carousel">
           <div className="flex items-center justify-between mb-16 px-6 md:px-8 lg:px-12 xl:px-14">
             <div>
