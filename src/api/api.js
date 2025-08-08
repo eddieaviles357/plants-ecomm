@@ -42,17 +42,49 @@ class ECommercePlantsAppAPI {
     return res;
   };
 
+  /**** CART specific endpoints *******/
+  static async getCart(username) {
+    let res = await this.request(`api/v1/cart/${username}`);
+    console.log('%cAPI::GET_CART::', "color: yellow; font-size: 20px;", res);
+    return res;
+  };
+
+  static async clearCart(username) {
+    let res = await this.request(`api/v1/cart/${username}`, {}, "delete");
+    console.log('%cAPI::DELETE_CART::', "color: yellow; font-size: 20px;", res);
+    return res;
+  };
+
+  static async addToCart(username, productId, qty=1) {
+    let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "post");
+    console.log('%cAPI::ADD_TO_CART::', "color: yellow; font-size: 20px;", res);
+    return res;
+  }
+
+  static async updateCartItemQty(username, productId, qty) {
+    let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "put");
+    console.log('%cAPI::UPDATE_CART_ITEM_QTY::', "color: yellow; font-size: 20px;", res);
+    return res;
+  };
+
+  static async removeCartItem(username, productId) {
+    let res = await this.request(`api/v1/cart/${username}/${productId}`, {}, "delete");
+    console.log('%cAPI::REMOVE_CART_ITEM::', "color: yellow; font-size: 20px;", res);
+    return res;
+  }
+
+
   // Get token for login.
   /**** AUTH specific endpoints *******/
   static async login(data) {
-    let res = await this.request(`/api/v1/auth/authenticate`, data, "post");
-    return res.token;
+    let {token} = await this.request(`/api/v1/auth/authenticate`, data, "post");
+    return token;
   };
 
   // Signup for site.
   static async signup(data) {
-    let res = await this.request(`/api/v1/auth/register`, data, "post");
-    return res.token;
+    let {token} = await this.request(`/api/v1/auth/register`, data, "post");
+    return token;
   };
 
 
