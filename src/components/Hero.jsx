@@ -16,7 +16,7 @@ const Hero = () => {
 
                       <div className="max-w-[394px] py-10 sm:py-15 lg:py-24.5 pl-4 sm:pl-7.5 lg:pl-12.5">
                         <div className="flex items-center gap-4 mb-5">
-                          <span>30% off</span>
+                          <span className="text-2xl text-[var(--vibrantrose)]">30% off</span>
                         </div>
                         <h2 className="mb-3 text-xl font-semibold text-dark sm:text-3xl">
                           <a href="#" >Tomatoe seeds</a>
@@ -24,7 +24,7 @@ const Hero = () => {
                         <p className="text-base text-meta-3">
                           Bag of seeds 25 pack. Organic grown and non-GMO. Perfect for home gardening.
                         </p>
-                        <a href="#" className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--black)] px-9 hover:bg-darkLight">Shop now</a>
+                        <a href="/products" className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--black)] px-9 hover:bg-darkLight">Shop now</a>
                       </div>
 
                       <div className="bg-[var(--black)]">

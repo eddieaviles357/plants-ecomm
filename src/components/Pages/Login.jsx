@@ -11,15 +11,38 @@ return (
           <div>
             <form>
                 <div className="mb-5">
-                  <label for="email" className="block mb-1.5 text-sm ">Email</label>
-                  <input id="email" placeholder="example@gmail.com" className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" required="" type="email" name="email" />
+                  <label htmlFor="email" className="block mb-1.5 text-sm ">Email</label>
+                  <input 
+                    id="email" 
+                    placeholder="example@gmail.com" 
+                    className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" 
+                    required 
+                    type="email" 
+                    name="email" 
+                  />
                 </div>
                 <div className="mb-5">
-                  <label for="password" className="block mb-1.5 text-sm text-gray-6">Password</label>
-                  <input id="password" placeholder="Enter your password" className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" required="" type="password" name="password" />
+                  <label htmlFor="password" className="block mb-1.5 text-sm text-gray-6">Password</label>
+                  <input 
+                    id="password" 
+                    placeholder="Enter your password" 
+                    className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" 
+                    required 
+                    type="password" 
+                    name="password" 
+                  />
                 </div>
-                <button type="submit" className="w-full flex justify-center font-normal text-sm h-11 text-white bg-dark py-3 px-6 rounded-lg ease-out duration-200 hover:bg-blue mt-7.5 items-center gap-2">Sign in </button>
-                <p class="mt-6 text-sm text-center">Don't have an account?<a class="pl-1 font-medium duration-200 ease-out text-dark hover:text-blue-dark" href="/signup">Sign Up Now!</a></p>
+                <button 
+                  type="submit" 
+                  className="w-full flex justify-center font-normal text-sm h-11 text-white bg-dark py-3 px-6 rounded-lg ease-out duration-200 hover:bg-blue mt-7.5 items-center gap-2">
+                    Sign in 
+                </button>
+                <p className="mt-6 text-sm text-center">
+                  Don't have an account?
+                  <a className="pl-1 font-medium duration-200 ease-out text-dark hover:text-blue-dark" href="/signup">
+                    Sign Up Now!
+                  </a>
+                </p>
             </form>
           </div>
         </div>

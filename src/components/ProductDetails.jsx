@@ -9,7 +9,7 @@ const ProductDetails = ({ products }) => {
             ({ id, sku, productName, imageURL, productDescription, price }) => (
               <div key={id} className="group">
                 <div className="relative overflow-hidden border border-gray-3 flex items-center justify-center rounded-xl bg-white min-h-[270px] mb-4">
-                  <a href="#"><img alt={productName} loading="lazy" src={imageURL} style={{color: "transparent"}} /></a>
+                  <a href={`/products/${id}`}><img alt={productName} loading="lazy" src={imageURL} style={{color: "transparent"}} /></a>
 
                   {/* Hover button */}
                   <div className="absolute left-0 bottom-0 translate-y-full w-full flex items-center justify-center gap-2.5 pb-5 ease-linear duration-200 group-hover:translate-y-0">
@@ -34,13 +34,13 @@ const ProductDetails = ({ products }) => {
                   </div>
                   {/* Hover button end*/}
                 </div>
-
-                <h3 class="font-semibold text-dark ease-out text-base duration-200 hover:text-blue mb-1.5 line-clamp-1">
-                  <a href={`/api/v1/products/${id}`}>{productDescription}</a> {/* This should link to the product details page of the specific product */}
+                {/* DESCRIPTION */}
+                <h3 className="font-semibold text-dark ease-out text-base duration-200 hover:text-blue mb-1.5 line-clamp-1">
+                  <a href={`/products/${id}`}>{productDescription}</a> {/* This should link to the product details page of the specific product */}
                 </h3>
-                
-                <span class="flex items-center gap-2 text-base font-medium">
-                  <span class="text-dark">${price}</span>
+                {/* PRICE */}
+                <span className="flex items-center gap-2 text-base font-medium">
+                  <span className="text-dark">${price}</span>
                 </span>
               </div>
           ))}
