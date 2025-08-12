@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Login from './components/Pages/Login.jsx';
 import Signup from './components/Pages/Signup.jsx';
 import About from './components/Pages/About.jsx';
+import ProductDetails from './components/Product/ProductDetails.jsx';
 import './App.css'
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
       <main>
         {/* <BackToTopButton /> */}
