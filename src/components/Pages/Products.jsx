@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductsPageCategories from '../Categories/ProductsPageCategories';
-import ProductDetails from '../ProductDetails';
+import ProductCard from '../Product/ProductCard';
+import ECommercePlantsAppAPI from '../../api/ECommercePlantsAppAPI';
     //**************************************************** */
     // Needs refactoring, data should be fetched from the backend
     //**************************************************** */
@@ -13,12 +14,11 @@ const Products = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/v1/products');
-                if (!response.ok) {
+                const response = await ECommercePlantsAppAPI.getProducts();
+                if (!response.success) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                setProducts(data);
+                setProducts(response);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -54,7 +54,7 @@ const Products = () => {
                 </div>
               </div>
             </div>
-            <ProductDetails products={products.products} />
+            <ProductCard products={products.products} />
           </div>
         </div>
       </section>
