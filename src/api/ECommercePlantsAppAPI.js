@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+const BASE_URL = "http://localhost:3001";
 
 class ECommercePlantsAppAPI {
   // token to interact with the API
@@ -18,6 +19,7 @@ class ECommercePlantsAppAPI {
     const params = (method === "get") ? data : {};
 
     try {
+      console.log("API::REQUEST::", url, method, data, params, headers);
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("APP::ERROR::", err.response);
@@ -29,7 +31,7 @@ class ECommercePlantsAppAPI {
 
   // API routes
 
-  /****** News specific API endpoints *******/
+  /****** Products specific API endpoints *******/
   static async getProducts() {
     let res = await this.request(`api/v1/products`);
     console.log('%cAPI::GET_PRODUCTS::', "color: yellow; font-size: 20px;", res);
@@ -45,31 +47,31 @@ class ECommercePlantsAppAPI {
   /**** CART specific endpoints *******/
   static async getCart(username) {
     let res = await this.request(`api/v1/cart/${username}`);
-    console.log('%cAPI::GET_CART::', "color: yellow; font-size: 20px;", res);
+    console.log('%cAPI::GET_CART::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async clearCart(username) {
     let res = await this.request(`api/v1/cart/${username}`, {}, "delete");
-    console.log('%cAPI::DELETE_CART::', "color: yellow; font-size: 20px;", res);
+    console.log('%cAPI::DELETE_CART::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async addToCart(username, productId, qty=1) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "post");
-    console.log('%cAPI::ADD_TO_CART::', "color: yellow; font-size: 20px;", res);
+    console.log('%cAPI::ADD_TO_CART::', "color: pink; font-size: 20px;", res);
     return res;
   }
 
   static async updateCartItemQty(username, productId, qty) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "put");
-    console.log('%cAPI::UPDATE_CART_ITEM_QTY::', "color: yellow; font-size: 20px;", res);
+    console.log('%cAPI::UPDATE_CART_ITEM_QTY::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async removeCartItem(username, productId) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {}, "delete");
-    console.log('%cAPI::REMOVE_CART_ITEM::', "color: yellow; font-size: 20px;", res);
+    console.log('%cAPI::REMOVE_CART_ITEM::', "color: pink; font-size: 20px;", res);
     return res;
   }
 
