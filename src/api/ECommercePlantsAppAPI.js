@@ -44,6 +44,13 @@ class ECommercePlantsAppAPI {
     return res;
   };
 
+  /****** Reveiws specific API endpoint */
+  static async getProductReviews(productId) {
+    let res = await this.request(`api/v1/reviews/product/${productId}`);
+    console.log('%cAPI::GET_PRODUCT_REVIEWS::', "color: orange; font-size: 20px;", res);
+    return res;
+  };
+
   /**** CART specific endpoints *******/
   static async getCart(username) {
     let res = await this.request(`api/v1/cart/${username}`);
