@@ -5,24 +5,24 @@ import ECommercePlantsAppAPI from '../../api/ECommercePlantsAppAPI';
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
-  const [reviewsData, setReviewsData] = useState([]);
+  const [reviewsData, setReviewsData] = useState(null);
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const { success, product } = await ECommercePlantsAppAPI.getProductById(id);
-        const { success: reviewsSuccess, reviews } = await ECommercePlantsAppAPI.getProductReviews(id);
+        const reviewResponse = await ECommercePlantsAppAPI.getProductReviews(id);
         if (!success) {
           throw new Error('Network response was not ok');
         }
         setProductDetails(product);
-        setReviewsData(reviews);
+        setReviewsData(reviewResponse);
       } catch (error) {
         console.error('Error fetching product details:', error);
         // Handle error appropriately, e.g., set an error state
       }
     };
     fetchProductDetails();
-  }, [id, setProductDetails]); // Add id to the dependency array to refetch
+  }, [id, setProductDetails, setReviewsData]); // Add id to the dependency array to refetch
 
   if (!productDetails) {
     return (
@@ -40,8 +40,8 @@ const ProductDetails = () => {
     price, 
     sku, 
     stock } = productDetails;
-    console.log("reviewsData", reviewsData)
-  // Render product details
+
+    // Render product details
   return (
     <section className=" mt-35 overflow-hidden bg-gray-2">
       <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0 mb-30">
@@ -58,7 +58,7 @@ const ProductDetails = () => {
                           Categories: {categories && categories.length > 0 ? (
                             <ul className="list-disc list-inside">
                               {categories.map((category, i) => (
-                                <li key={new Date().getMilliseconds()}>{category}</li>
+                                <li key={i + i}>{category}</li>
                               ))}
                             </ul>
                           ) : (
@@ -73,12 +73,14 @@ const ProductDetails = () => {
                       {/* Add to cart button or other actions */}
                       {/* <button onClick={() => addToCart(productDetails.id)}>Add to Cart</button> */}
                       <div>
-                        {reviewsData.length > 0 ? (
+                        {reviewsData.reviews.length > 0 ? (
                           <div className="mt-10">
                             <h3 className="font-semibold text-lg mb-4">Customer Reviews</h3>
+                            <span className="text-sm text-gray-500">Total Reviews: {reviewsData.reviews.length}</span>
+                            <span className="block mb-4 text-sm text-yellow-500">Average Rating: {'★'.repeat(reviewsData.averageRating)}{'☆'.repeat(5 - reviewsData.averageRating)}</span>
                             <ul className="space-y-4">
-                              {reviewsData.map((review) => (
-                                <li key={review.id} className="border-b pb-4">
+                              {reviewsData.reviews.map((review) => (
+                                <li key={review.userId + 1} className="border-b pb-4">
                                   <p className="font-medium">{review.firstName} - <span className="text-sm text-gray-500">{new Date(review.createdAt).toLocaleDateString()}</span></p>
                                   <p className="mt-1">{review.review}</p>
                                   <p className="mt-1 text-sm text-yellow-500">Rating: {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</p>
