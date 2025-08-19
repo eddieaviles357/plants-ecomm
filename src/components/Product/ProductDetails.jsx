@@ -47,7 +47,7 @@ const ProductDetails = () => {
       <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0 mb-30">
         <div className="max-w-[570px] w-full mx-auto rounded-2xl bg-white shadow-1 p-4 sm:p-7.5 xl:p-11">
           <div className="text-center mb-11">
-            <h2 className="font-bold text-xl sm:text-2xl xl:text-heading-5 text-dark mb-1.5">{productName}</h2>
+                      <h2 className="font-bold text-xl sm:text-2xl xl:text-heading-5 text-dark mb-1.5">{productName}</h2>
                       <img alt={productName} loading="lazy" src={`../${imageURL}`} style={{color: "transparent"}} />
                       <div className="pt-10">
                         <p className="text-lg">{description}</p>
@@ -92,8 +92,6 @@ const ProductDetails = () => {
                           <p className="mt-10">No reviews available for this product.</p>
                         )}
                       </div>
-          </div>
-          <div>
           </div>
         </div>
       </div> 
