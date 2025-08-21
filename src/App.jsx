@@ -1,5 +1,12 @@
+import React, { useEffect, useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage.js';
+// import jwt from 'jsonwebtoken';
+import { useJwt } from 'react-jwt';
+// import { useParams } from 'react-router-dom';
+import ECommercePlantsAppAPI from './api/ECommercePlantsAppAPI.js';
 import { Routes, Route } from 'react-router-dom';
 import { TOKEN_STORAGE_ID, PATHS } from './constants/app.js';
+import UserContext from './components/Auth/UserContext.jsx';
 import Navigation from './components/Header/Navigation.jsx';
 import Home from './components/Pages/Home.jsx';
 import Products from './components/Pages/Products.jsx';
@@ -11,14 +18,13 @@ import About from './components/Pages/About.jsx';
 import ProductDetails from './components/Product/ProductDetails.jsx';
 import './App.css'
 
-import UserContext from './components/Auth/UserContext.jsx';
-import ECommercePlantsAppAPI from './api/ECommercePlantsAppAPI.js';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [errors, setErrors] = useState(null);
+  const { decodeToken, isExpired } = useJwt(token);
   
   useEffect(() => {
     console.debug("App useEffect LOAD_USER_INFO\n", "token=", token);
@@ -26,7 +32,8 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
-          let { username } = jwt.decode(token);
+          // let { username } = jwt.decode(token);
+          let { username } = decodeToken(token);
           // add token to api class so we can interact with
           ECommercePlantsAppAPI.token = token;
           let currentUser = await ECommercePlantsAppAPI.getCurrentUser(username);
