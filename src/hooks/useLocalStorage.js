@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 // Custom hook for keeping state data synced with localStorage.
 
-function useLocalStorage(key, firstValue = null) {
+const useLocalStorage = (key, firstValue = null) => {
   const initialValue = localStorage.getItem(key) || firstValue;
 
   const [item, setItem] = useState(initialValue);
