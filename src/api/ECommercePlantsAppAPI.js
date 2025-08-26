@@ -23,9 +23,9 @@ class ECommercePlantsAppAPI {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("APP::ERROR::", err.response);
-      let message = err.response.data.error.message;
+      let errMessages = err.response.data.errors;
       // throw array of errors
-      throw Array.isArray(message) ? message : [message];
+      throw Array.isArray(errMessages) ? errMessages : [errMessages];
     }
   };
 
@@ -86,13 +86,13 @@ class ECommercePlantsAppAPI {
   // Get token for login.
   /**** AUTH specific endpoints *******/
   static async login(data) {
-    let {token} = await this.request(`/api/v1/auth/authenticate`, data, "post");
+    let {token} = await this.request(`api/v1/auth/authenticate`, data, "post");
     return token;
   };
 
   // Signup for site.
   static async signup(data) {
-    let {token} = await this.request(`/api/v1/auth/register`, data, "post");
+    let {token} = await this.request(`api/v1/auth/register`, data, "post");
     return token;
   };
 
