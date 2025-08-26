@@ -13,6 +13,7 @@ const SignupForm = ({ signup }) => {
     lastName: "",
     email: "",
   });
+
   const [formErrors, setFormErrors] = useState([]);
 
   async function handleSignup(evt) {
@@ -26,6 +27,9 @@ const SignupForm = ({ signup }) => {
     setFormData(data => ({ ...data, [name]: value.toLowerCase() }));
   }
 
+  useEffect(() => {
+    if(currentUser) Navigate("/");
+  })
   return (
     <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0  mb-30">
       <div className="max-w-[570px] w-full mx-auto rounded-2xl bg-white shadow-1 p-4 sm:p-7.5 xl:p-11">
@@ -37,12 +41,12 @@ const SignupForm = ({ signup }) => {
             <div className="mb-5">
               <label htmlFor="firstname" className="block mb-1.5 text-sm ">FirstName</label>
               <input 
-                id="firstname" 
+                id="firstName" 
                 placeholder="Stein" 
                 className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" 
                 required
                 type="text" 
-                name="firstname"
+                name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
                 />
@@ -50,12 +54,12 @@ const SignupForm = ({ signup }) => {
             <div className="mb-5">
               <label htmlFor="lastname" className="block mb-1.5 text-sm ">LastName</label>
               <input 
-                id="lastname" 
+                id="lastName" 
                 placeholder="Gate" 
                 className="rounded-lg border text-dark placeholder:text-sm text-sm placeholder:font-normal border-gray-3 h-11  focus:border-blue focus:outline-0  placeholder:text-dark-5 w-full  py-2.5 px-4 duration-200  focus:ring-0" 
                 required
                 type="text" 
-                name="lastname"
+                name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
                 />
@@ -100,7 +104,8 @@ const SignupForm = ({ signup }) => {
                 />
             </div>
 
-            {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
+            {/* {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null} */}
+            {formErrors.length ? <div>{formErrors}</div> : null}
 
             <button 
               type="submit" 
@@ -120,4 +125,6 @@ const SignupForm = ({ signup }) => {
       </div>
     </div>
   )
-}
+};
+
+export default SignupForm;
