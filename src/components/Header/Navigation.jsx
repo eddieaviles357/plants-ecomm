@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import logoImg from '/plant-logo.jpg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import UserContext from '../Auth/UserContext';
 
-
-const Navigation = () => {
+const Navigation = ({ logout }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { currentUser } = useContext(UserContext);
+  
   useEffect(() => {
     // if scroll is beyond 15px scroll is set to true and we will apply styles based on that
     // if scroll is less than 15px scroll is set to false and we will apply default styles
@@ -52,22 +53,28 @@ const Navigation = () => {
                     Products
                   </NavLink>
                 </li>
-                <li className="relative group">
-                  <NavLink 
-                    to="/login"
-                    style={ ({ isActive }) => ({ ":hover": { color: "green"},color: isActive ? "blue" : "black" }) }
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="relative group">
-                  <NavLink 
-                    to="/signup"
-                    style={ ({ isActive }) => ({ ":hover": { color: "green"},color: isActive ? "blue" : "black" }) }
-                  >
-                    Signup
-                  </NavLink>
-                </li>
+                { currentUser ? (
+                  <NavLink to="/" onClick={logout}>Log out {currentUser}</NavLink>
+                  ) : (
+                    <>
+                      <li className="relative group">
+                        <NavLink 
+                          to="/login"
+                          style={ ({ isActive }) => ({ ":hover": { color: "green"},color: isActive ? "blue" : "black" }) }
+                        >
+                          Login
+                        </NavLink>
+                      </li> 
+                      <li className="relative group">
+                      <NavLink 
+                        to="/signup"
+                        style={ ({ isActive }) => ({ ":hover": { color: "green"},color: isActive ? "blue" : "black" }) }
+                      >
+                        Signup
+                      </NavLink>
+                    </li>
+                  </>
+                  )}
                 <li className="relative group">
                   <NavLink 
                     to="/about"
