@@ -53,8 +53,7 @@ function App() {
 
   // Handles site logout.
   async function logout() {
-    const { username } = currentUser;
-    console.log("__LOGGIING_OUT__", username);
+    console.log("__LOGGIING_OUT__", currentUser);
     setCurrentUser(null);
     setToken(null);
   }
@@ -102,7 +101,7 @@ function App() {
         logout
         }}>
       <Navigation logout={logout}/>
-      <RoutesApp logout={logout} signup={signup}/>
+      <RoutesApp login={login} signup={signup}/>
       <main>
         {/* <BackToTopButton /> */}
         <Footer />
