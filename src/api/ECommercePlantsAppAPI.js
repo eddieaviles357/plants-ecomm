@@ -19,7 +19,7 @@ class ECommercePlantsAppAPI {
     const params = (method === "get") ? data : {};
 
     try {
-      console.log("API::REQUEST::", url, method, data, params, headers);
+      console.debug("API::REQUEST::", url, method, data, params, headers);
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("APP::ERROR::", err.response);
