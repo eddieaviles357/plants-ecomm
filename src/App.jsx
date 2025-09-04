@@ -6,7 +6,8 @@ import { isExpired, decodeToken } from "react-jwt";
 // import { useParams } from 'react-router-dom';
 import ECommercePlantsAppAPI from './api/ECommercePlantsAppAPI.js';
 import { TOKEN_STORAGE_ID, PATHS } from './constants/app.js';
-import UserContext from './components/Auth/UserContext.jsx';
+import UserContext from './components/Context/UserContext.jsx';
+import CategoriesContext from './components/Context/CategoriesContext.jsx';
 import Navigation from './components/Header/Navigation.jsx';
 import BackToTopButton from './components/BackToTopButton.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -17,6 +18,7 @@ import './App.css'
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [categories, setCategories] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [errors, setErrors] = useState(null);
   // const { isExpired, decodeToken } = useJwt(token);
@@ -50,6 +52,18 @@ function App() {
     setInfoLoaded(false);
     getCurrentUser();
   }, [token]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        let {categories} = await ECommercePlantsAppAPI.getCategories();
+        setCategories(categories);
+      } catch (err) {
+        setErrors(Array.from(err || err.message));
+      }
+    }
+    fetchCategories();
+  }, [categories.length]);
 
   // Handles site logout.
   async function logout() {
@@ -88,6 +102,7 @@ function App() {
     }
   };
 
+
   if (!infoLoaded) return <div className="text-center">Loading...</div>;
   
   return (
@@ -100,12 +115,14 @@ function App() {
         login,
         logout
         }}>
-      <Navigation logout={logout}/>
-      <RoutesApp login={login} signup={signup}/>
-      <main>
-        {/* <BackToTopButton /> */}
-        <Footer />
-      </main>
+      <CategoriesContext.Provider value={{categories}}>
+        <Navigation logout={logout}/>
+        <RoutesApp login={login} signup={signup}/>
+        <main>
+          {/* <BackToTopButton /> */}
+          <Footer />
+        </main>
+      </CategoriesContext.Provider>
     </UserContext.Provider>
   )
 }
