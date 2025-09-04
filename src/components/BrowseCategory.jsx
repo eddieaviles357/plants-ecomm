@@ -1,6 +1,10 @@
 import Categories from './MainCategoriesSection/categories.jsx';
+import CategoriesContext from './Context/CategoriesContext.jsx';
+import { useContext } from 'react';
+
 const BrowseCategory = () => {
-  const categories = ["Nutrients & Concentrates", "Lights", "Containers", "Soil", "Seeds", "Fertilizers", "Tools & Accessories"];
+  const {categories} = useContext(CategoriesContext);
+  
   return (
     <section className="relative overflow-hidden pt-17.5 bg-[var(--white)] w-full left-0 border-gray-2 rounded-2xl">
       <div className="w-full px-4 pb-16 mx-auto max-w-7xl sm:px-8 xl:px-0">
@@ -28,8 +32,8 @@ const BrowseCategory = () => {
           <div className="swiper swiper-initialized swiper-horizontal">
             <div className="swiper-wrapper flex flex-column" style={{transform: "translate3d(0px, 0px, 0px)", transitionDuration: "0ms"}}>
               {categories.map(
-                (category, index) => (
-                  <Categories key={index} category={category}/>
+                ({category, id}) => (
+                  <Categories key={id} category={category}/>
               )
               )}
             </div>
