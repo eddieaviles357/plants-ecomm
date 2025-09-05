@@ -51,6 +51,13 @@ class ECommercePlantsAppAPI {
     return res;
   };
 
+  /****** Categories specific API endpoint */
+  static async getCategories() {
+    let res = await this.request(`api/v1/categories`);
+    console.log('%cAPI::GET_CATEGORIES::', "color: green; font-size: 20px;", res);
+    return res;
+  };
+
   /**** CART specific endpoints *******/
   static async getCart(username) {
     let res = await this.request(`api/v1/cart/${username}`);
