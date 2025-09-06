@@ -6,8 +6,10 @@ import { isExpired, decodeToken } from "react-jwt";
 // import { useParams } from 'react-router-dom';
 import ECommercePlantsAppAPI from './api/ECommercePlantsAppAPI.js';
 import { TOKEN_STORAGE_ID, PATHS } from './constants/app.js';
+import AppContext from './components/Context/AppContext.jsx';
 import UserContext from './components/Context/UserContext.jsx';
 import CategoriesContext from './components/Context/CategoriesContext.jsx';
+import ProductsContext from './components/Context/ProductsContext.jsx';
 import Navigation from './components/Header/Navigation.jsx';
 import BackToTopButton from './components/BackToTopButton.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -19,6 +21,7 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [errors, setErrors] = useState(null);
   // const { isExpired, decodeToken } = useJwt(token);
@@ -65,6 +68,18 @@ function App() {
     fetchCategories();
   }, [categories.length]);
 
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        let {products} = await ECommercePlantsAppAPI.getProducts();
+        setProducts(products);
+      } catch (err) {
+        setErrors(Array.from(err || err.message));
+      }
+    }
+    fetchProducts();
+  }, [products.length]);
+  
   // Handles site logout.
   async function logout() {
     console.log("__LOGGIING_OUT__", currentUser);
@@ -106,24 +121,26 @@ function App() {
   if (!infoLoaded) return <div className="text-center">Loading...</div>;
   
   return (
-    <UserContext.Provider value={{ 
-        currentUser, 
-        setCurrentUser,
-        errors,
-        setErrors,
-        signup,
-        login,
-        logout
-        }}>
-      <CategoriesContext.Provider value={{categories}}>
-        <Navigation logout={logout}/>
-        <RoutesApp login={login} signup={signup}/>
-        <main>
-          {/* <BackToTopButton /> */}
-          <Footer />
-        </main>
-      </CategoriesContext.Provider>
-    </UserContext.Provider>
+    <AppContext.Provider value={{ errors,setErrors }}>
+      <UserContext.Provider value={{ 
+          currentUser, 
+          setCurrentUser,
+          signup,
+          login,
+          logout
+          }}>
+        <ProductsContext.Provider value={{products, setProducts}}>
+          <CategoriesContext.Provider value={{ categories }}>
+            <Navigation logout={logout}/>
+            <main>
+            <RoutesApp login={login} signup={signup}/>
+              {/* <BackToTopButton /> */}
+              <Footer />
+            </main>
+          </CategoriesContext.Provider>
+        </ProductsContext.Provider>
+      </UserContext.Provider>
+    </AppContext.Provider>
   )
 }
 
