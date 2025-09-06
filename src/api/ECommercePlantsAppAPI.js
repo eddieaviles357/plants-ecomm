@@ -34,58 +34,58 @@ class ECommercePlantsAppAPI {
   /****** Products specific API endpoints *******/
   static async getProducts() {
     let res = await this.request(`api/v1/products`);
-    console.log('%cAPI::GET_PRODUCTS::', "color: yellow; font-size: 20px;", res);
+    console.debug('%cAPI::GET_PRODUCTS::', "color: yellow; font-size: 20px;", res);
     return res;
   };
 
   static async getProductById(id) {
     let res = await this.request(`api/v1/products/${id}`);
-    console.log('%cAPI::GET_PRODUCTS::', "color: yellow; font-size: 20px;", res);
+    console.debug('%cAPI::GET_PRODUCTS::', "color: yellow; font-size: 20px;", res);
     return res;
   };
 
   /****** Reveiws specific API endpoint */
   static async getProductReviews(productId) {
     let res = await this.request(`api/v1/reviews/product/${productId}`);
-    console.log('%cAPI::GET_PRODUCT_REVIEWS::', "color: orange; font-size: 20px;", res);
+    console.debug('%cAPI::GET_PRODUCT_REVIEWS::', "color: orange; font-size: 20px;", res);
     return res;
   };
 
   /****** Categories specific API endpoint */
   static async getCategories() {
     let res = await this.request(`api/v1/categories`);
-    console.log('%cAPI::GET_CATEGORIES::', "color: green; font-size: 20px;", res);
+    console.debug('%cAPI::GET_CATEGORIES::', "color: green; font-size: 20px;", res);
     return res;
   };
 
   /**** CART specific endpoints *******/
   static async getCart(username) {
     let res = await this.request(`api/v1/cart/${username}`);
-    console.log('%cAPI::GET_CART::', "color: pink; font-size: 20px;", res);
+    console.debug('%cAPI::GET_CART::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async clearCart(username) {
     let res = await this.request(`api/v1/cart/${username}`, {}, "delete");
-    console.log('%cAPI::DELETE_CART::', "color: pink; font-size: 20px;", res);
+    console.debug('%cAPI::DELETE_CART::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async addToCart(username, productId, qty=1) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "post");
-    console.log('%cAPI::ADD_TO_CART::', "color: pink; font-size: 20px;", res);
+    console.debug('%cAPI::ADD_TO_CART::', "color: pink; font-size: 20px;", res);
     return res;
   }
 
   static async updateCartItemQty(username, productId, qty) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {quantity: qty}, "put");
-    console.log('%cAPI::UPDATE_CART_ITEM_QTY::', "color: pink; font-size: 20px;", res);
+    console.debug('%cAPI::UPDATE_CART_ITEM_QTY::', "color: pink; font-size: 20px;", res);
     return res;
   };
 
   static async removeCartItem(username, productId) {
     let res = await this.request(`api/v1/cart/${username}/${productId}`, {}, "delete");
-    console.log('%cAPI::REMOVE_CART_ITEM::', "color: pink; font-size: 20px;", res);
+    console.debug('%cAPI::REMOVE_CART_ITEM::', "color: pink; font-size: 20px;", res);
     return res;
   }
 
