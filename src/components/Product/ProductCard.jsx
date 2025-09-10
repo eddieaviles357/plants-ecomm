@@ -11,7 +11,9 @@ const ProductCard = ({ products }) => {
             ({ id, sku, productName, imageURL, productDescription, price }) => (
               <div key={id} className="group">
                 <div className="relative overflow-hidden border border-gray-3 flex items-center justify-center rounded-xl bg-white min-h-[270px] mb-4">
-                  <a href={`/products/${id}`}><img alt={productName} loading="lazy" src={imageURL} style={{color: "transparent"}} /></a>
+                  <a href={`/products/${id}`}>
+                    <img alt={productName} loading="lazy" src={imageURL} style={{color: "transparent"}} />
+                  </a>
 
                   {/* Hover button */}
                   <div className="absolute left-0 bottom-0 translate-y-full w-full flex items-center justify-center gap-2.5 pb-5 ease-linear duration-200 group-hover:translate-y-0">
