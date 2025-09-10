@@ -1,6 +1,10 @@
-
+import { useContext } from 'react';
+import ProductsContext from './Context/ProductsContext.jsx';
 
 const Hero = () => {
+  const { products } = useContext(ProductsContext);
+  console.log('Products', products[0]);
+  
   return (
     <section className="overflow-hidden pb-12 pt-35 left-0">
       <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0">
@@ -19,16 +23,16 @@ const Hero = () => {
                           <span className="text-2xl text-[var(--vibrantrose)]">30% off</span>
                         </div>
                         <h2 className="mb-3 text-xl font-semibold text-dark sm:text-3xl">
-                          <a href="#" >Tomatoe seeds</a>
+                          <a href={`${products[0] ? `products/${products[0]?.id}` : "products"}`} >{products[0] && products[0]?.productName}</a>
                         </h2>
                         <p className="text-base text-meta-3">
-                          Bag of seeds 25 pack. Organic grown and non-GMO. Perfect for home gardening.
+                          {products[0] && products[0]?.productDescription}
                         </p>
                         <a href="/products" className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--black)] px-9 hover:bg-darkLight">Shop now</a>
                       </div>
 
                       <div className="bg-[var(--black)]">
-                        <img src="/plant-logo.jpg" alt="Hero" className="w-full h-auto object-cover rounded-2xl h-48 w-96" loading="eager"/>
+                        <img src={`${products[0] ? `${products[0]?.imageURL}` : "products"}`} alt="Hero" className="w-full h-auto object-cover rounded-2xl h-48 w-96" loading="eager"/>
                       </div>
                     </div>
                   </div>
@@ -46,11 +50,11 @@ const Hero = () => {
                 <div className="w-1/2">
                   <div className="pt-5 mb-10">
                     <h2 className="max-w-[153px] font-semibold text-dark text-xl hover:text-blue">
-                      <a href="#">Shirt</a>
+                      <a href={`${products[1] ? `products/${products[1]?.id}` : "products"}`}>{products[1] && products[1]?.productName}</a>
                     </h2>
                   </div>
                   <div className="pb-6">
-                    <p className="font-medium text-dark-4 text-xs mb-1.5 uppercase">limited</p>
+                    <p className="font-medium text-dark-4 text-xs mb-1.5 uppercase">{products[1] && products[1]?.productDescription}</p>
                     <span className="flex items-center gap-2.5">
                       <span className="font-bold text-heading-5 text-dark text-2xl">$29.99</span>
                       <span className="text-2xl font-medium line-through text-dark-4">$39.99</span>
@@ -58,7 +62,7 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="w-1/2 bg-[var(--sunflower)] rounded-2xl">
-                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src="/shirt-image.jpg" className="" />
+                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src={`${products[1] ? `${products[1]?.imageURL}` : "products"}`} className="" />
                 </div>
               </div>
             </div>
@@ -68,11 +72,11 @@ const Hero = () => {
                 <div className="w-1/2">
                   <div className="pt-5 mb-10">
                     <h2 className="max-w-[153px] font-semibold text-dark text-xl hover:text-blue">
-                      <a href="#">Shirt</a>
+                      <a href={`${products[2] ? `products/${products[2]?.id}` : "products"}`}>{products[2] && products[2]?.productName}</a>
                     </h2>
                   </div>
                   <div className="pb-6">
-                    <p className="font-medium text-dark-4 text-xs mb-1.5 uppercase">limited</p>
+                    <p className="font-medium text-dark-4 text-xs mb-1.5 uppercase">{products[2] && products[2]?.productDescription}</p>
                     <span className="flex items-center gap-2.5">
                       <span className="font-bold text-heading-5 text-dark text-2xl">$29.99</span>
                       <span className="text-2xl font-medium line-through text-dark-4">$39.99</span>
@@ -80,7 +84,7 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="w-1/2 bg-[var(--sunflower)] rounded-2xl">
-                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src="/shirt-image.jpg" className="" />
+                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src={`${products[2] ? `${products[2]?.imageURL}` : "products"}`} className="" />
                 </div>
               </div>
             </div>
