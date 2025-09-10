@@ -10,6 +10,7 @@ import AppContext from './components/Context/AppContext.jsx';
 import UserContext from './components/Context/UserContext.jsx';
 import CategoriesContext from './components/Context/CategoriesContext.jsx';
 import ProductsContext from './components/Context/ProductsContext.jsx';
+import ProductCategoriesContext from './components/Context/ProductCategoriesContext.jsx';
 import Navigation from './components/Header/Navigation.jsx';
 import BackToTopButton from './components/BackToTopButton.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -22,6 +23,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [productCategories, setProductCategories] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [errors, setErrors] = useState(null);
   // const { isExpired, decodeToken } = useJwt(token);
@@ -131,12 +133,14 @@ function App() {
           }}>
         <ProductsContext.Provider value={{products, setProducts}}>
           <CategoriesContext.Provider value={{ categories }}>
-            <Navigation logout={logout}/>
-            <main>
-            <RoutesApp login={login} signup={signup}/>
-              {/* <BackToTopButton /> */}
-              <Footer />
-            </main>
+            <ProductCategoriesContext.Provider value={{ productCategories, setProductCategories }}>
+              <Navigation logout={logout}/>
+              <main>
+              <RoutesApp login={login} signup={signup}/>
+                {/* <BackToTopButton /> */}
+                <Footer />
+              </main>
+            </ProductCategoriesContext.Provider>
           </CategoriesContext.Provider>
         </ProductsContext.Provider>
       </UserContext.Provider>
