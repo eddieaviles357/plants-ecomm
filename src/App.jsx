@@ -15,8 +15,7 @@ import Navigation from './components/Header/Navigation.jsx';
 import BackToTopButton from './components/BackToTopButton.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import RoutesApp from './components/RoutesApp/RoutesApp.jsx';
-import './App.css'
-
+import './App.css';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
@@ -83,7 +82,7 @@ function App() {
   }, [products.length]);
   
   // Handles site logout.
-  async function logout() {
+  const logout = async() => {
     console.log("__LOGGIING_OUT__", currentUser);
     setCurrentUser(null);
     setToken(null);
@@ -94,7 +93,7 @@ function App() {
  * Automatically logs them in (set token) upon SIGNUP.
  *
  */
-  async function signup(signupData) {
+  const signup = async(signupData) =>{
     try {
       let token = await ECommercePlantsAppAPI.signup(signupData);
       setToken(token);
@@ -104,10 +103,9 @@ function App() {
       return { success: false, errors };
     }
   };
-
+  
   // Handles site LOGIN.
-
-  async function login(loginData) {
+  const login = async(loginData) =>{
     try {
       let token = await ECommercePlantsAppAPI.login(loginData);
       setToken(token);
@@ -119,6 +117,15 @@ function App() {
     }
   };
 
+  // fetches product categories based on category selected
+  const fetchProductCategories = async(category) =>{
+    try {
+      let productCategories = await ECommercePlantsAppAPI.getProductCategories(category);
+      setProductCategories(productCategories);
+    } catch (err) {
+      setErrors(Array.from(err || err.message));
+    }
+  };
 
   if (!infoLoaded) return <div className="text-center">Loading...</div>;
   
@@ -133,7 +140,7 @@ function App() {
           }}>
         <ProductsContext.Provider value={{products, setProducts}}>
           <CategoriesContext.Provider value={{ categories }}>
-            <ProductCategoriesContext.Provider value={{ productCategories, setProductCategories }}>
+            <ProductCategoriesContext.Provider value={{ productCategories, setProductCategories, fetchProductCategories }}>
               <Navigation logout={logout}/>
               <main>
               <RoutesApp login={login} signup={signup}/>
@@ -148,4 +155,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
