@@ -120,8 +120,8 @@ function App() {
   // fetches product categories based on category selected
   const fetchProductCategories = async(category) =>{
     try {
-      let productCategories = await ECommercePlantsAppAPI.getProductCategories(category);
-      setProductCategories(productCategories);
+      let { categoryProducts } = await ECommercePlantsAppAPI.getProductCategories(category);
+      setProductCategories(categoryProducts);
     } catch (err) {
       setErrors(Array.from(err || err.message));
     }
