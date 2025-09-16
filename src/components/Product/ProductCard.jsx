@@ -2,12 +2,11 @@ import ProductDetails from './ProductDetails';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ products }) => {
-    // console.log('ProductCard component rendered');
-    console.log('Products', products);
+    console.debug('Products->ProductCard', products);
     return (
       <div className="w-full xl:col-span-9">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-6">
-          {products.map(
+          {products?.map(
             ({ id, sku, productName, imageURL, productDescription, price }) => (
               <div key={id} className="group">
                 <div className="relative overflow-hidden border border-gray-3 flex items-center justify-center rounded-xl bg-white min-h-[270px] mb-4">
