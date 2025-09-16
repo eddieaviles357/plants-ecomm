@@ -39,14 +39,39 @@ const ProductsPageCategories = () => {
     }
     
     handleCategoryFilter(category, id);
-
-    // const productCategoriesLength = Object.keys(categorySelected).length;
-    // console.log("productCategoriesLength", productCategoriesLength);
-    fetchProductCategories(id);
   }
 
-  console.log("categorySelected", categorySelected);
-  console.log("productCategories", productCategories)
+  const fetchSelectedCategories = async (e) => {
+    e.preventDefault();
+    let selectedCategoriesIds = Object.values(categorySelected);
+    
+    if(selectedCategoriesIds.length === 0) {
+      setProductCategories([]);
+      return;
+    }
+    // handles promises for each category selected
+    const handlePromises = async() => {
+      try {
+        let promised = [];
+        for (let categoryId of selectedCategoriesIds) {
+          promised.push(fetchProductCategories(categoryId));
+        }
+        let results = await Promise.all(promised);
+        return results;
+      } catch (err) {
+        console.error("handlePromises: problem_loading", err);
+        // setErrors(Array.from(err || err.message));
+      }
+    };
+
+    try {
+      let results = handlePromises();
+    } catch (err) {
+      console.error("fetchSelectedCategories: problem_loading", err);
+      // setErrors(Array.from(err || err.message));
+    }
+  }
+
   return (
     <div className="flex flex-col gap-6 overflow-y-auto max-xl:h-screen max-xl:p-5">
       <div className="bg-white rounded-lg">
@@ -71,6 +96,7 @@ const ProductsPageCategories = () => {
         {/* toggle menu */}
         <form 
           onChange={handleCategorySelection}
+          onSubmit={fetchSelectedCategories}
           className={`${isCategoryMenuOpen ? "hidden" : "flex"} flex-col gap-3 px-6 py-5`}
           >
           {categories.map(({category, id}) => ( 
@@ -79,6 +105,10 @@ const ProductsPageCategories = () => {
               <span className="flex-1 text-base font-normal peer-checked:text-blue">{category}</span>
           </label>
           ))}
+            <button
+              className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--forest)] px-9 hover:bg-darkLight">
+              Filter
+            </button>
         </form>
         {/* toggle menu end */}
       </div>
