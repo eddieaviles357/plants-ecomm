@@ -14,10 +14,8 @@ const Hero = () => {
             <div className="relative overflow-hidden bg-[var(--white)] z-1 border-gray-2 rounded-2xl">
               <div className="swiper swiper-initialized swiper-horizontal hero-carousel swiper-backface-hidden">
 
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide swiper-slide-prev">
                     <div className="flex flex-col-reverse items-center pt-6 sm:pt-0 sm:flex-row">
-
+                      {/* Hero */}
                       <div className="max-w-[394px] py-10 sm:py-15 lg:py-24.5 pl-4 sm:pl-7.5 lg:pl-12.5">
                         <div className="flex items-center gap-4 mb-5">
                           <span className="text-2xl text-[var(--vibrantrose)]">30% off</span>
@@ -28,17 +26,22 @@ const Hero = () => {
                         <p className="text-base text-meta-3">
                           {products[0] && products[0]?.productDescription}
                         </p>
-                        <a href="/products" className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--black)] px-9 hover:bg-darkLight">Shop now</a>
+                        <a 
+                          href="/products" 
+                          className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--vibrantrose)] px-9 hover:bg-darkLight">
+                          Shop now
+                        </a>
                       </div>
 
                       <div className="bg-[var(--black)]">
-                        <img src={`${products[0] ? `${products[0]?.imageURL}` : "products"}`} alt="Hero" className="w-full h-auto object-cover rounded-2xl h-48 w-96" loading="eager"/>
+                        <img 
+                          src={`${products[0] ? `${products[0]?.imageURL}` : "products"}`} 
+                          alt="Hero" 
+                          className="w-full h-auto object-cover rounded-2xl h-48 w-96" 
+                          loading="eager"
+                          />
                       </div>
                     </div>
-                  </div>
-                  <div className="swiper-slide swiper-slide-active"></div>
-                  <div className="swiper-slide swiper-slide-next"></div>
-                </div>
 
               </div>
             </div>
@@ -62,7 +65,15 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="w-1/2 bg-[var(--sunflower)] rounded-2xl">
-                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src={`${products[1] ? `${products[1]?.imageURL}` : "products"}`} className="" />
+                  <img 
+                    alt="shirt image" 
+                    loading="lazy" 
+                    width="170" 
+                    height="230" 
+                    decoding="async" 
+                    src={`${products[1] ? `${products[1]?.imageURL}` : "products"}`} 
+                    className=""
+                    />
                 </div>
               </div>
             </div>
@@ -84,7 +95,15 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="w-1/2 bg-[var(--sunflower)] rounded-2xl">
-                  <img alt="shirt image" loading="lazy" width="170" height="230" decoding="async" src={`${products[2] ? `${products[2]?.imageURL}` : "products"}`} className="" />
+                  <img 
+                    alt="shirt image" 
+                    loading="lazy" 
+                    width="170" 
+                    height="230" 
+                    decoding="async" 
+                    src={`${products[2] ? `${products[2]?.imageURL}` : "products"}`} 
+                    className=""
+                    />
                 </div>
               </div>
             </div>
