@@ -64,6 +64,12 @@ class ECommercePlantsAppAPI {
     return res;
   };
 
+  static async getFilteredProductCategories(categoryIds) {
+    let res = await this.request(`api/v1/categories/products/filter`, categoryIds);
+    console.debug('%cAPI::GET_FILTERED_PRODUCT_CATEGORIES::', "color: green; font-size: 20px;", res);
+    return res;
+  }
+
   /**** CART specific endpoints *******/
   static async getCart(username) {
     let res = await this.request(`api/v1/cart/${username}`);
