@@ -4,7 +4,10 @@ import ProductCategoriesContext from '../Context/ProductCategoriesContext.jsx';
 
 const ProductsPageCategories = () => {
   const { categories } = useContext(CategoriesContext);
-  const { productCategories, setProductCategories, fetchProductCategories } = useContext(ProductCategoriesContext);
+  const { 
+    setProductCategories, 
+    fetchProductCategories,
+    setIsCategorySelected} = useContext(ProductCategoriesContext);
   const [ isCategoryMenuOpen, setIsCategoryMenuOpen ] = useState(false);
   const [ categorySelected, setCategorySelected ] = useState({});
   
@@ -21,7 +24,7 @@ const ProductsPageCategories = () => {
     async function handleCategoryFilter(category, id) {
       try {
 
-        +id; // convert to a number
+        // +id; // convert to a number
       
         if(categorySelected[category] === id) {
           setCategorySelected(data => {
@@ -42,34 +45,31 @@ const ProductsPageCategories = () => {
   }
 
   const fetchSelectedCategories = async (e) => {
-    e.preventDefault();
-    let selectedCategoriesIds = Object.values(categorySelected);
-    
-    if(selectedCategoriesIds.length === 0) {
-      setProductCategories([]);
-      return;
-    }
-    // handles promises for each category selected
-    const handlePromises = async() => {
+
+    const fetchFilteredProducts = async(categoryIds) => {
       try {
-        let promised = [];
-        for (let categoryId of selectedCategoriesIds) {
-          promised.push(fetchProductCategories(categoryId));
-        }
-        let results = await Promise.all(promised);
+        const results = await fetchProductCategories(categoryIds);
         return results;
       } catch (err) {
-        console.error("handlePromises: problem_loading", err);
+        console.error("fetchFilteredProducts: problem_loading", err);
         // setErrors(Array.from(err || err.message));
       }
     };
 
     try {
-      let results = handlePromises();
+      e.preventDefault();
+      setIsCategorySelected(true); // will load products based on category selected
+      
+      if(Object.values(categorySelected).length === 0) {
+        setProductCategories({});
+        setIsCategorySelected(false); // will load all products in state
+        return;
+      }
+      fetchFilteredProducts(categorySelected);
     } catch (err) {
-      console.error("fetchSelectedCategories: problem_loading", err);
-      // setErrors(Array.from(err || err.message));
+      
     }
+    
   }
 
   return (
@@ -106,7 +106,8 @@ const ProductsPageCategories = () => {
           </label>
           ))}
             <button
-              className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--forest)] px-9 hover:bg-darkLight">
+              className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--forest)] 
+                        px-9 hover:bg-darkLight hover:cursor-pointer hover:bg-[var(--emerald)]">
               Filter
             </button>
         </form>
