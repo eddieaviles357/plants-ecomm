@@ -21,8 +21,9 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [isCategorySelected, setIsCategorySelected] = useState(false);
   const [products, setProducts] = useState([]);
-  const [productCategories, setProductCategories] = useState([]);
+  const [productCategories, setProductCategories] = useState({});
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [errors, setErrors] = useState(null);
   // const { isExpired, decodeToken } = useJwt(token);
@@ -120,7 +121,8 @@ function App() {
   // fetches product categories based on category selected
   const fetchProductCategories = async(category) =>{
     try {
-      let { categoryProducts } = await ECommercePlantsAppAPI.getProductCategories(category);
+      console.log("fetchProductCategories category", category);
+      let { categoryProducts } = await ECommercePlantsAppAPI.getFilteredProductCategories(category);
       setProductCategories(categoryProducts);
     } catch (err) {
       setErrors(Array.from(err || err.message));
@@ -140,7 +142,7 @@ function App() {
           }}>
         <ProductsContext.Provider value={{products, setProducts}}>
           <CategoriesContext.Provider value={{ categories }}>
-            <ProductCategoriesContext.Provider value={{ productCategories, setProductCategories, fetchProductCategories }}>
+            <ProductCategoriesContext.Provider value={{ productCategories, setProductCategories, fetchProductCategories, isCategorySelected, setIsCategorySelected }}>
               <Navigation logout={logout}/>
               <main>
               <RoutesApp login={login} signup={signup}/>
