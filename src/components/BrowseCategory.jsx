@@ -1,9 +1,6 @@
-import Categories from './MainCategoriesSection/categories.jsx';
-import CategoriesContext from './Context/CategoriesContext.jsx';
-import { useContext } from 'react';
+import CategoriesList from './MainCategoriesSection/CategoriesList.jsx';
 
 const BrowseCategory = () => {
-  const {categories} = useContext(CategoriesContext);
   
   return (
     <section className="relative overflow-hidden pt-17.5 bg-[var(--white)] w-full left-0 border-gray-2 rounded-2xl">
@@ -31,11 +28,7 @@ const BrowseCategory = () => {
 
           <div className="swiper swiper-initialized swiper-horizontal">
             <div className="swiper-wrapper flex flex-column" style={{transform: "translate3d(0px, 0px, 0px)", transitionDuration: "0ms"}}>
-              {categories.map(
-                ({category, id}) => (
-                  <Categories key={id} category={category}/>
-              )
-              )}
+                <CategoriesList />
             </div>
           </div>
 
