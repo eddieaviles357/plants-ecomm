@@ -121,7 +121,6 @@ function App() {
   // fetches product categories based on category selected
   const fetchProductCategories = async(category) =>{
     try {
-      console.log("fetchProductCategories category", category);
       let { categoryProducts } = await ECommercePlantsAppAPI.getFilteredProductCategories(category);
       setProductCategories(categoryProducts);
     } catch (err) {
