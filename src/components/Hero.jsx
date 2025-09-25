@@ -3,7 +3,6 @@ import ProductsContext from './Context/ProductsContext.jsx';
 
 const Hero = () => {
   const { products } = useContext(ProductsContext);
-  console.log('Products', products[0]);
   
   return (
     <section className="overflow-hidden pb-12 pt-35 left-0">
