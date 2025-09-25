@@ -8,5 +8,6 @@ export const PATHS = Object.freeze({
   LOGIN: "/login",
   SIGNUP: "/signup",
   ABOUT: "/about",
+  CATEGORIES: "/categories/:id",
   NOT_FOUND: "*",
 })
