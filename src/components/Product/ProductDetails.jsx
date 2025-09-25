@@ -62,7 +62,7 @@ const ProductDetails = () => {
                 <div className="flex items-center gap-1">
                   <p className="mt-1 text-lg text-yellow-500">{'★'.repeat(reviewsData.averageRating)}{'☆'.repeat(5 - reviewsData.averageRating)}</p>
                 </div>
-                <span> ( {`${reviewsData.reviews.length} cutomer ${(reviewsData.reviews.length > 1) ? "reviews" : "review"}`} ) </span>
+                <span> ( {`${reviewsData.reviews.length} customer ${(reviewsData.reviews.length > 1) ? "reviews" : "review"}`} ) </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="text-[var(--black)]">{stock > 0 ? "In Stock" : "Out of Stock"}</span>
@@ -75,13 +75,13 @@ const ProductDetails = () => {
             <form>
               <div className="flex flex-wrap items-center gap-4.5">
                 <div className="flex items-center border rounded-lg border-gray-3">
-                  <button aria-label="button for remove product" className="flex items-center justify-center w-12 h-12 duration-200 ease-out hover:bg-amber-300" disabled="">
+                  <button aria-label="button for remove product" className="flex items-center justify-center w-12 h-12 duration-200 ease-out hover:bg-[var(--vibrantrose)]" disabled="">
                     <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M-6.411e-08 1.00006C-2.8703e-08 0.595048 0.328325 0.266724 0.733333 0.266724L11.2667 0.266725C11.6717 0.266725 12 0.595049 12 1.00006C12 1.40507 11.6717 1.73339 11.2667 1.73339L0.733333 1.73339C0.328324 1.73339 -9.9517e-08 1.40507 -6.411e-08 1.00006Z" fill="#1C274C"></path>
                     </svg>
                   </button>
                   <span className="flex items-center justify-center w-16 h-12 border-x border-gray-3">1</span>
-                  <button aria-label="button for add product" className="flex items-center justify-center w-12 h-12 duration-200 ease-out hover:bg-emerald-600">
+                  <button aria-label="button for add product" className="flex items-center justify-center w-12 h-12 duration-200 ease-out hover:bg-[var(--sunflower)]" >
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M6.06667 0C6.47168 1.77035e-08 6.8 0.328325 6.8 0.733333L6.8 11.2667C6.8 11.6717 6.47167 12 6.06667 12C5.66166 12 5.33333 11.6717 5.33333 11.2667V0.733333C5.33333 0.328325 5.66166 -1.77035e-08 6.06667 0Z" fill="currentColor"></path>
                       <path fillRule="evenodd" clipRule="evenodd" d="M0 5.93333C3.5407e-08 5.52833 0.328325 5.2 0.733333 5.2L11.2667 5.2C11.6717 5.2 12 5.52833 12 5.93333C12 6.33834 11.6717 6.66667 11.2667 6.66667L0.733333 6.66667C0.328324 6.66667 -3.5407e-08 6.33834 0 5.93333Z" fill="currentColor"></path>
@@ -105,6 +105,26 @@ const ProductDetails = () => {
                 </button>
               </div>
             </form>
+          </div>
+          <div className="w-full col-span-6 mt-10">
+            {reviewsData.reviews.length > 0 ? (
+              <div className="mt-10">
+                <h3 className="font-semibold text-lg mb-4">Customer Reviews</h3>
+                <span className="text-lg text-gray-500">Total Reviews: {reviewsData.reviews.length}</span>
+                <span className="block mb-4 text-lr text-yellow-500">Average Rating: {'★'.repeat(reviewsData.averageRating)}{'☆'.repeat(5 - reviewsData.averageRating)}</span>
+                <ul className="space-y-4">
+                  {reviewsData.reviews.map((review) => (
+                    <li key={review.userId + 1} className="border-b pb-4">
+                      <p className="font-medium text-lg">{review.firstName} - <span className="text-sm text-gray-500">{new Date(review.createdAt).toLocaleDateString()}</span></p>
+                      <p className="mt-1">{review.review}</p>
+                      <p className="mt-1 text-lg text-yellow-500">Rating: {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</p>
+                    </li>
+                  ))}
+                </ul>   
+              </div>
+            ) : (
+              <p className="mt-10">No reviews available for this product.</p>
+            )}
           </div>
         </div>
       </div>
