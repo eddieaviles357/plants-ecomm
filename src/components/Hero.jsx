@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import ProductsContext from './Context/ProductsContext.jsx';
 
 const Hero = () => {
@@ -20,25 +21,26 @@ const Hero = () => {
                           <span className="text-2xl text-[var(--vibrantrose)]">30% off</span>
                         </div>
                         <h2 className="mb-3 text-xl font-semibold text-dark sm:text-3xl">
-                          <a href={`${products[0] ? `products/${products[0]?.id}` : "products"}`} >{products[0] && products[0]?.productName}</a>
+                          <Link to={`${products[0] ? `products/${products[0]?.id}` : "products"}`} >{products[0] && products[0]?.productName}</Link>
                         </h2>
                         <p className="text-base text-meta-3">
                           {products[0] && products[0]?.productDescription}
                         </p>
-                        <a 
-                          href="/products" 
+                        <Link
+                          to="/products" 
                           className="inline-flex py-3 mt-10 font-medium text-[var(--white)] duration-200 ease-out rounded-lg text-custom-sm bg-[var(--vibrantrose)] px-9 hover:bg-darkLight">
                           Shop now
-                        </a>
+                        </Link>
                       </div>
 
                       <div className="bg-[var(--black)]">
+                      <Link to={`${products[0] ? `products/${products[0]?.id}` : "products"}`} key={`${products[0] ? products[0]?.id : "products"}`}>  
                         <img 
                           src={`${products[0] ? `${products[0]?.imageURL}` : "products"}`} 
                           alt="Hero" 
-                          className="w-full h-auto object-cover rounded-2xl h-48 w-96" 
-                          loading="eager"
+                          className="w-full h-auto object-cover rounded-2xl h-48 w-96"
                           />
+                        </Link>
                       </div>
                     </div>
 
@@ -52,7 +54,7 @@ const Hero = () => {
                 <div className="w-1/2">
                   <div className="pt-5 mb-10">
                     <h2 className="max-w-[153px] font-semibold text-dark text-xl hover:text-blue">
-                      <a href={`${products[1] ? `products/${products[1]?.id}` : "products"}`}>{products[1] && products[1]?.productName}</a>
+                      <Link to={`${products[1] ? `products/${products[1]?.id}` : "products"}`}>{products[1] && products[1]?.productName}</Link>
                     </h2>
                   </div>
                   <div className="pb-6">
@@ -82,7 +84,7 @@ const Hero = () => {
                 <div className="w-1/2">
                   <div className="pt-5 mb-10">
                     <h2 className="max-w-[153px] font-semibold text-dark text-xl hover:text-blue">
-                      <a href={`${products[2] ? `products/${products[2]?.id}` : "products"}`}>{products[2] && products[2]?.productName}</a>
+                      <Link to={`${products[2] ? `products/${products[2]?.id}` : "products"}`}>{products[2] && products[2]?.productName}</Link>
                     </h2>
                   </div>
                   <div className="pb-6">
